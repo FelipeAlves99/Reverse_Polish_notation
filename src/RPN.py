@@ -1,6 +1,5 @@
 import argparse
 import Extensions as calc
-import WriteResult as writer
 
 # Used to specify the .txt path that will be used
 # Usado para especificar o arquivo que será usado
@@ -16,7 +15,7 @@ error = ""
 print('+'.isalnum())
 
 
-resultFile = writer.Open()
+resultFile = Open()
 for line in lines:
     for char in line:
         if char.isnumeric():
@@ -29,11 +28,24 @@ for line in lines:
             error = calc.CalculateRPN(char, lineCalc)
 
         if error is not "":
-            writer.WriteLine(
+            WriteLine(
                 resultFile, "{} => Result: {}".format(line, error))
             break
 
-    writer.WriteLine(resultFile, "{} => Result: {}".format(line, lineCalc[0]))
+    WriteLine(resultFile, "{} => Result: {}".format(line, lineCalc[0]))
 
-writer.Close(resultFile)
+Close(resultFile)
 print("Processo concluído, arquivo 'result.txt' gerado dentro da pasta 'src' do projeto")
+
+
+def Open():
+    file = open("result.txt", "w+")
+    return file
+
+
+def Close(file):
+    file.close()
+
+
+def WriteLine(file, line):
+    file.write("{} \r\n".format(line))

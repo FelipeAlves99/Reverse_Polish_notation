@@ -30,6 +30,14 @@ def WriteLine(file, line):
     file.write("{} \n".format(line))
 
 
+def Calculate(char, lineCalc):
+    try:
+        calc.CalculateRPN(char, lineCalc)
+    except:
+        error.append(
+            'Linha com erro de calculo')
+
+
 resultFile = open_file()
 for line in lines:
 
@@ -51,10 +59,10 @@ for line in lines:
                 error.append('O caracter {} é inválido'.format(char))
                 break
             else:
-                calc.CalculateRPN(char, lineCalc)
+                Calculate(char, lineCalc)
 
         else:
-            calc.CalculateRPN(char, lineCalc)
+            Calculate(char, lineCalc)
 
     if len(lineCalc) > 1:
         error.append('Linha inconsistente, não retornou apenas um resultado. Resultado: {}'.format(

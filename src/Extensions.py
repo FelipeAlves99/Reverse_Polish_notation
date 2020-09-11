@@ -1,5 +1,4 @@
 def CalculateRPN(char, list):
-    print(char)
     if char is '+':
         Add(list)
     elif char is '-':

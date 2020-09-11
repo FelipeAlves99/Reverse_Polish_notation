@@ -11,12 +11,28 @@ file = open(args["file"], "r")
 lines = file.readlines()
 lineCalc = []
 error = ""
+isvalid = True
 
-print('+'.isalnum())
+
+def open_file():
+    file = open("result.txt", "w+")
+    return file
 
 
-resultFile = Open()
+def Close(file):
+    file.close()
+
+
+def WriteLine(file, line):
+    file.write("{} \n".format(line))
+
+
+resultFile = open_file()
 for line in lines:
+    if line.isspace():
+        WriteLine(resultFile, "")
+        continue
+
     for char in line:
         if char.isnumeric():
             lineCalc.append(char)
@@ -27,25 +43,14 @@ for line in lines:
         else:
             error = calc.CalculateRPN(char, lineCalc)
 
-        if error is not "":
-            WriteLine(
-                resultFile, "{} => Result: {}".format(line, error))
-            break
+    if error is not "":
+        WriteLine(
+            resultFile, "{} => Result: {}".format(line, error))
+        break
+    else:
+        WriteLine(resultFile, "{} => Result: {}".format(line, lineCalc[0]))
 
-    WriteLine(resultFile, "{} => Result: {}".format(line, lineCalc[0]))
+    lineCalc.clear()
 
 Close(resultFile)
 print("Processo concluído, arquivo 'result.txt' gerado dentro da pasta 'src' do projeto")
-
-
-def Open():
-    file = open("result.txt", "w+")
-    return file
-
-
-def Close(file):
-    file.close()
-
-
-def WriteLine(file, line):
-    file.write("{} \r\n".format(line))

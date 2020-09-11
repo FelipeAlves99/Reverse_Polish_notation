@@ -41,29 +41,26 @@ for line in lines:
 
     for char in line:
         if char.isnumeric():
-            print(char)
             lineCalc.append(int(char))
 
         elif char.isspace():
-            print(char)
             continue
 
         elif char.isalpha():
-            print(char + ' is alpha')
             if char is not 'x':
-                print(char + " ERRO")
                 error.append('O caracter {} é inválido'.format(char))
                 break
+            else:
+                calc.CalculateRPN(char, lineCalc)
 
         else:
-            print(char + ' is alpha')
             calc.CalculateRPN(char, lineCalc)
 
     if len(lineCalc) > 1:
         error.append('Linha inconsistente, não retornou apenas um resultado. Resultado: {}'.format(
             lineCalc))
 
-    if error is not "":
+    if len(error) > 0:
         WriteLine(
             resultFile, "{} => Result: {}".format(line, error[0]))
 

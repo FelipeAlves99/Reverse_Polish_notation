@@ -1,11 +1,12 @@
 def CalculateRPN(char, list):
+    print(char)
     if char is '+':
         Add(list)
-    if char is '-':
+    elif char is '-':
         Subtract(list)
-    if char is '*':
+    elif char is 'x' or '*':
         Multiply(list)
-    if char is '/':
+    elif char is '/':
         Divide(list)
     else:
         return "A linha possui um caracter invalido: {}".format(char)
@@ -17,7 +18,7 @@ def Add(list):
     lastNumber = list.pop()
     secondLastNumber = list.pop()
 
-    result = int(lastNumber) + int(secondLastNumber)
+    result = int(secondLastNumber) + int(lastNumber)
     list.append(result)
 
 
@@ -25,7 +26,7 @@ def Subtract(list):
     lastNumber = list.pop()
     secondLastNumber = list.pop()
 
-    result = int(lastNumber) - int(secondLastNumber)
+    result = int(secondLastNumber) - int(lastNumber)
     list.append(result)
 
 
@@ -33,7 +34,7 @@ def Multiply(list):
     lastNumber = list.pop()
     secondLastNumber = list.pop()
 
-    result = int(lastNumber) * int(secondLastNumber)
+    result = int(secondLastNumber) * int(lastNumber)
     list.append(result)
 
 
@@ -41,5 +42,5 @@ def Divide(list):
     lastNumber = list.pop()
     secondLastNumber = list.pop()
 
-    result = int(lastNumber) / int(secondLastNumber)
+    result = int(secondLastNumber) / int(lastNumber)
     list.append(result)
